@@ -134,6 +134,7 @@ from dulwich.protocol import (
 from dulwich.refs import (
     ANNOTATED_TAG_SUFFIX,
     LOCAL_BRANCH_PREFIX,
+    LOCAL_TAG_PREFIX,
     strip_peeled_refs,
     RefsContainer,
 )
@@ -1440,7 +1441,7 @@ def _make_branch_ref(name):
 def _make_tag_ref(name):
     if getattr(name, "encode", None):
         name = name.encode(DEFAULT_ENCODING)
-    return b"refs/tags/" + name
+    return LOCAL_TAG_PREFIX + name
 
 
 def branch_delete(repo, name):
